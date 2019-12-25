@@ -8,10 +8,6 @@ module EVM-SPECS
     imports ID
     imports EVM
 
-    //fixme verify if needed
-    //syntax EthereumCell
-    //syntax EthereumCellFragment
-
     configuration
       <kevm-specs>
         <kevm/>

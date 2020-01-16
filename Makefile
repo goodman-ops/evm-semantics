@@ -145,7 +145,7 @@ $(PLUGIN_SUBMODULE)/make.timestamp:
 MAIN_MODULE    := ETHEREUM-SIMULATION
 SYNTAX_MODULE  := $(MAIN_MODULE)
 export MAIN_DEFN_FILE  := driver
-export SPECS_DEFN_FILE := specs
+export SPECS_DEFN_FILE := evm-imp-specs
 
 k_files       := driver.k data.k network.k evm.k evm-types.k json.k krypto.k edsl.k evm-node.k web3.k asm.k state-loader.k serialization.k evm-imp-specs.k
 EXTRA_K_FILES += $(MAIN_DEFN_FILE).k

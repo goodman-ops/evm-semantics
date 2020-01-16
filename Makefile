@@ -153,7 +153,7 @@ ALL_K_FILES   := $(k_files) $(EXTRA_K_FILES)
 
 llvm_dir    := $(DEFN_DIR)/llvm
 java_dir    := $(DEFN_DIR)/java
-specs_dir    := $(DEFN_DIR)/specs
+specs_dir   := $(DEFN_DIR)/specs
 haskell_dir := $(DEFN_DIR)/haskell
 export node_dir    := $(CURDIR)/$(DEFN_DIR)/node
 export web3_dir    := $(CURDIR)/$(DEFN_DIR)/web3
@@ -529,4 +529,3 @@ metropolis-theme: $(BUILD_DIR)/media/metropolis/beamerthememetropolis.sty
 $(BUILD_DIR)/media/metropolis/beamerthememetropolis.sty:
 	git submodule update --init -- $(dir $@)
 	cd $(dir $@) && $(MAKE)
-

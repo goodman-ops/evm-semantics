@@ -231,8 +231,8 @@ $(java_kompiled): $(java_files)
 	                 $(KOMPILE_OPTS)
 
 $(specs_kompiled): $(specs_files)
-	$(K_BIN)/kompile --debug --main-module EVM-SPECS --backend java \
-	                 --syntax-module EVM-SPECS $(specs_dir)/$(SPECS_DEFN_FILE).k \
+	$(K_BIN)/kompile --debug --main-module EVM-IMP-SPECS --backend java \
+	                 --syntax-module EVM-IMP-SPECS $(specs_dir)/$(SPECS_DEFN_FILE).k \
 	                 --directory $(specs_dir) -I $(specs_dir) \
 	                 $(KOMPILE_OPTS)
 

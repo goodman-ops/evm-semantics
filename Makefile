@@ -146,8 +146,7 @@ $(PLUGIN_SUBMODULE)/make.timestamp:
 
 MAIN_MODULE    := ETHEREUM-SIMULATION
 SYNTAX_MODULE  := $(MAIN_MODULE)
-export MAIN_DEFN_FILE  := driver
-export SPECS_DEFN_FILE := evm-imp-specs
+export MAIN_DEFN_FILE := driver
 
 k_files       := driver.k data.k network.k evm.k evm-types.k json.k krypto.k edsl.k evm-node.k web3.k asm.k state-loader.k serialization.k evm-imp-specs.k
 EXTRA_K_FILES += $(MAIN_DEFN_FILE).k
@@ -169,7 +168,7 @@ web3_files    := $(patsubst %, $(web3_dir)/%, $(ALL_K_FILES))
 defn_files    := $(llvm_files) $(java_files) $(specs_files) $(haskell_files) $(node_files) $(web3_files)
 
 java_kompiled    := $(java_dir)/$(MAIN_DEFN_FILE)-kompiled/timestamp
-specs_kompiled   := $(specs_dir)/$(SPECS_DEFN_FILE)-kompiled/timestamp
+specs_kompiled   := $(specs_dir)/specs-kompiled/timestamp
 node_kompiled    := $(DEFN_DIR)/vm/kevm-vm
 web3_kompiled    := $(web3_dir)/build/kevm-client
 haskell_kompiled := $(haskell_dir)/$(MAIN_DEFN_FILE)-kompiled/definition.kore
@@ -232,9 +231,15 @@ $(java_kompiled): $(java_files)
 	                 --directory $(java_dir) -I $(java_dir) \
 	                 $(KOMPILE_OPTS)
 
+# Imperative Specs Backend
+
+$(specs_kompiled): MAIN_DEFN_FILE=evm-imp-specs
+$(specs_kompiled): MAIN_MODULE=EVM-IMP-SPECS
+$(specs_kompiled): SYNTAX_MODULE=EVM-IMP-SPECS
+
 $(specs_kompiled): $(specs_files)
-	$(K_BIN)/kompile --debug --main-module EVM-IMP-SPECS --backend java \
-	                 --syntax-module EVM-IMP-SPECS $(specs_dir)/$(SPECS_DEFN_FILE).k \
+	$(K_BIN)/kompile --debug --main-module $(MAIN_MODULE) --backend java \
+	                 --syntax-module $(SYNTAX_MODULE) $(specs_dir)/$(MAIN_DEFN_FILE).k \
 	                 --directory $(specs_dir) -I $(specs_dir) \
 	                 $(KOMPILE_OPTS)
 
